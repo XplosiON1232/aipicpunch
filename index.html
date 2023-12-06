@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pic Puncher</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="easyfix.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1>AI Pic Puncher</h1>
+    <div class="double">
+        <textarea id="jsonBody" placeholder="JSON API Body" disabled></textarea>
+        <div>
+            <h2 style="margin-top: 0;">Puncher v1</h2>
+            <input id="prompt" type="text" placeholder="Prompt"><br><br>
+            <input id="baseURL" type="text" placeholder="Base URL"><br><br>
+            <label>
+                <input type="checkbox" checked disabled><b style="user-select: none;">Use easyfix</b>
+            </label><br><br>
+            <button onclick="ping()">Ping Server</button><br><br>
+            <button onclick="gen()">Generate 1x</button>
+            <button onclick="rep(5)">Generate 5x</button>
+            <button onclick="rep(10)">Generate 10x</button>
+            <button onclick="rep(20)">Generate 20x</button>
+            <p style="max-width: 350px">
+                <small>Warning: Punches are irreversible, they all will go through and might occupy the server for a while.</small>
+            </p>
+            
+        </div>
+    </div>
+    <div id="imgsDiv"></div>
+    
+    <script>
+        document.getElementById('baseURL').value = localStorage.getItem("baseURL");
+    </script>
+</body>
+</html>

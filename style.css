@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 2em;
+}
+
+textarea {
+    display: inline-block;
+    height: 300px;
+    width: 500px;
+}
+
+.double {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.double div {
+    margin-left: 2em;
+    height: 300px;
+}
+
+#imgsDiv img {
+    height: 300px;
+}
