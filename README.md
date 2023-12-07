@@ -1,5 +1,5 @@
 # AI Pic Puncher
-Simple tool for calling the API to a carefree-creator server!
+Simple tool for generating lots of images using AI and viewing them in the browser.
 
 **\>> [Start a server here](https://colab.research.google.com/github/carefree0910/carefree-creator/blob/dev/tests/server.ipynb) <<**
 
