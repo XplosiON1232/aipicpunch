@@ -34,6 +34,9 @@
     
     <script>
         document.getElementById('baseURL').value = localStorage.getItem("baseURL");
+        window.onbeforeunload = function() {
+            return "Images will deleted if you refresh";
+        };
     </script>
 </body>
 </html>

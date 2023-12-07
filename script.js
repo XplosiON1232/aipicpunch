@@ -2,7 +2,7 @@
 // Script - Made by XplosiON - v1 //
 // ------------------------------ //
 function ping() {
-    // Pring the server
+    // Ping the server
     const prompt = document.getElementById('prompt').value;
     const baseURL = document.getElementById('baseURL').value;
     localStorage.setItem("baseURL", baseURL);
@@ -11,7 +11,7 @@ function ping() {
     };
     const reqBodyString = JSON.stringify(reqBody);
     const apiUrl = `${baseURL}/demo/hello`;
-    const fetchOptions = {
+    const fo = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -19,7 +19,7 @@ function ping() {
         body: reqBodyString,
     };
 
-    fetch(apiUrl, fetchOptions)
+    fetch(apiUrl, fo)
         .then(resp => resp.json())
         .then(resp => {
             document.getElementById('jsonBody').innerHTML = resp.msg;
@@ -29,15 +29,14 @@ function ping() {
             // Handle errors
             console.error("Error:", error);
         });
-    // Cwww
 }
 
 function gen() {
-    // Gen
+    // Generate image
     const prompt = document.getElementById('prompt').value;
     const baseURL = document.getElementById('baseURL').value;
     localStorage.setItem("baseURL", baseURL);
-    const requestBody = {
+    const reqBody = {
         text: prompt,
         negative_prompt: "<easynegative>",
         seed: -1,
@@ -48,56 +47,39 @@ function gen() {
             "<easynegative>": easyfix
         }
     };
-    // Convert the JSON body to a string
-    const requestBodyString = JSON.stringify(requestBody);
-    document.getElementById('jsonBody').innerHTML = requestBodyString;
-    // Specify the API URL
+    const reqBodyString = JSON.stringify(reqBody);
+    document.getElementById('jsonBody').innerHTML = reqBodyString;
     const apiUrl = `${baseURL}/txt2img/sd`;
-    // Define the fetch options
-    const fetchOptions = {
+    const fo = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: requestBodyString,
+        body: reqBodyString,
     };
 
-    // Send the API request
-    fetch(apiUrl, fetchOptions)
-        .then(response => {
-            // Check if the response is successful (status code 2xx)
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+    fetch(apiUrl, fo)
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error(`HTTP error! Status: ${resp.status}`);
             }
-
-            // Check if the response contains a Content-Type header indicating an image
-            const contentType = response.headers.get("Content-Type");
+            const contentType = resp.headers.get("Content-Type");
             if (contentType && contentType.startsWith("image")) {
-                // If the response is an image, create an image element and set its source
-                return response.blob().then(blob => {
+                return resp.blob().then(blob => {
                     const imageUrl = URL.createObjectURL(blob);
-
-                    // Display the image on the website
                     const imageElement = document.createElement("img");
                     imageElement.src = imageUrl;
-
-                    // Append the image element to the document body (you can modify this based on your HTML structure
                     document.getElementById('imgsDiv').appendChild(imageElement);
                 });
             } else {
-                // If the response is not an image, parse it as JSON
-                return response.json().then(data => {
-                    // Handle the API response data
+                return resp.json().then(data => {
                     console.log("API Response:", data);
                 });
             }
         })
         .catch(error => {
-            // Handle errors
             console.error("Error:", error);
         });
-    
-    // Continue here...
 }
 
 function rep(count) {
